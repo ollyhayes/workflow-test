@@ -12,3 +12,4 @@ def print_args(args):
 
 if __name__ == "__main__":
     print_args(sys.argv)
+    exit(1)
