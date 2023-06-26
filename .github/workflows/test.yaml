@@ -8,9 +8,8 @@ on:
   workflow_dispatch:
     inputs:
       build_tag:
-        description: "Which build tag to use against"
+        description: "Which build tag to use (default is 'blah' for env1 and 'blah2' for env2"
         required: false
-        default: ""
         type: string
 
 jobs:
@@ -22,8 +21,13 @@ jobs:
         with:
           clean: false
 
-      - name: "Run test script"
-        run: python3 test.py -t build-tag -e environment
+      - name: "Run test script for env1"
+        run: |
+          python3 test.py -t ${{ github.event.inputs.build_tag || 'blah' }} -e ENV1
+
+      - name: "Run test script for env2"
+        run: |
+          python3 test.py -t ${{ github.event.inputs.build_tag || 'blah2' }} -e ENV2
 
       # - name: "Run check compatibility script for EDU"
       #   run: python3 backend/kialo/applications/development/check_task_formats.py -t deployed-edu-prod -e edu
