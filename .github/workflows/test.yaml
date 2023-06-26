@@ -15,7 +15,7 @@ on:
 
 jobs:
   check_task_format_compatibility:
-    # runs-on: [self-hosted, k8s, init]
+    runs-on: ubuntu-latest
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
