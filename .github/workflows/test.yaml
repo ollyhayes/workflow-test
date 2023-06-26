@@ -23,11 +23,11 @@ jobs:
 
       - name: "Run test script for env1"
         run: |
-          python3 test.py -t ${{ github.event.inputs.build_tag || 'blah' }} -e ENV1
+          python3 test.py -t ${{ github.event.inputs.build_tag || 'blah' }} -e ENV1 >> $GITHUB_STEP_SUMMARY
 
       - name: "Run test script for env2"
         run: |
-          python3 test.py -t ${{ github.event.inputs.build_tag || 'blah2' }} -e ENV2
+          python3 test.py -t ${{ github.event.inputs.build_tag || 'blah2' }} -e ENV2 >> $GITHUB_STEP_SUMMARY
 
       # - name: "Run check compatibility script for EDU"
       #   run: python3 backend/kialo/applications/development/check_task_formats.py -t deployed-edu-prod -e edu
